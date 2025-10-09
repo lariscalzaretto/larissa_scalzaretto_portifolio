@@ -1,0 +1,594 @@
+/*===================================================================
+  1. VARIÁVEIS GLOBAIS DE TEMA
+===================================================================*/
+
+:root {
+    /* Cores e Gradientes */
+    --primary-hue: 250; 
+    --accent-color: hsl(300, 70%, 50%);
+    --link-color: hsl(var(--primary-hue), 70%, 60%);
+    
+    /* 🎯 VARIÁVEIS DEGRADÊ DE FUNDO PRINCIPAL (DARK: Verde Escuro -> Roxo) */
+    --main-bg-start-dark: hsl(120, 15%, 5%);    
+    --main-bg-end-dark: #17161c; 
+    
+    /* Cor de fundo base (final do degradê) */
+    --background-color: var(--main-bg-end-dark); 
+
+    --text-color: #f0f0f0;
+    --secondary-text-color: #a0a0a0;
+    --block-bg: hsla(var(--primary-hue), 15%, 15%, 0.9);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    
+    /* VARIÁVEIS DE IMAGEM DARK */
+    --header-bg-web: url('../img/background/banner_4.jpg'); 
+    --header-bg-mobile: url('../img/background/forest.png'); 
+    --footer-bg: url('../img/background/Image_fx.jpg'); 
+    
+    /* PERSONAGENS (Desktop e Mobile Dark) */
+    --hero-character-url: url('../img/characters/no_background/full_2.jpg'); 
+    --hero-character-mobile-dark: url('../img/characters/no_background/bear_1.png'); 
+    --hero-character-mobile-light: url('../img/characters/no_background/bear_1.png'); 
+
+    /* VARIÁVEIS DO BOTÃO/PROGRESSO */
+    --button-neon-color: var(--link-color); 
+    --button-text-light: #313133; 
+    --button-bg-gradient: linear-gradient(90deg, hsla(280, 50%, 60%, 1) 0%, hsla(300, 70%, 50%, 1) 100%); 
+    --progress-start: hsl(260, 90%, 60%); 
+    --progress-end: hsl(320, 90%, 60%); 
+}
+
+[data-theme="light"] {
+    /* 🎯 VARIÁVEIS DEGRADÊ DE FUNDO PRINCIPAL (LIGHT: Azul -> Branco) */
+    --main-bg-start-light: hsl(200, 70%, 90%); 
+    --main-bg-end-light: #5b8ab6; 
+    
+    /* Cor de fundo base (final do degradê) */
+    --background-color: var(--main-bg-end-light); 
+    --text-color: #2c3e50; 
+    --secondary-text-color: #7f8c8d;
+    --block-bg: rgba(236, 240, 241, 0.9); 
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-color: #bdc3c7;
+    --link-color: #3498db; 
+    --accent-color: #e74c3c; 
+    
+    /* VARIÁVEIS DE IMAGEM LIGHT */
+    --header-bg-web: url('../img/background/ice.png'); 
+    --header-bg-mobile: url('../img/background/banner_cel.jpg'); 
+    --footer-bg: url('../img/background/banner_5.jpg'); 
+    
+    /* PERSONAGENS (Desktop e Mobile Light) */
+    --hero-character-url: url('../img/characters/no_background/full_1.png'); 
+    --hero-character-mobile-light: url('../img/characters/no_background/bear_2.png'); 
+    --hero-character-mobile-dark: url('../img/characters/no_background/bear_1.png'); 
+
+    /* VARIÁVEIS DO BOTÃO/PROGRESSO LIGHT */
+    --button-neon-color: var(--link-color); 
+    --button-bg-gradient: linear-gradient(90deg, hsla(200, 70%, 60%, 1) 0%, hsla(200, 70%, 50%, 1) 100%);
+    --progress-start: hsl(260, 80%, 50%); 
+    --progress-end: hsl(320, 80%, 50%);
+}
+
+/*===================================================================
+  2. ESTILOS BASE E TIPOGRAFIA
+===================================================================*/
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Exo 2', sans-serif;
+    margin: 0; padding: 0;
+    /* O body AGORA USA a cor final do degradê do main */
+    background-color: var(--background-color); 
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh; 
+    display: flex; flex-direction: column; 
+}
+
+h1, h2, h3 {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: var(--text-color);
+    margin: 0.5em 0;
+}
+
+/* Força texto do header a ser branco */
+.hero-text .title, .hero-text .subtitle { color: #ffffff !important; }
+
+.subtitle { font-size: 1.8em; color: var(--secondary-text-color); }
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+a:hover { color: var(--accent-color); }
+.experience-list a { color: var(--secondary-text-color); }
+
+
+/*===================================================================
+  3. ESTRUTURA E BLOCOS DE LAYOUT
+===================================================================*/
+
+.section-block {
+    padding: 60px 5%; margin: 0; width: 100%;
+    transition: background-color 0.4s ease;
+}
+.section-title {
+    font-size: 2.5em; font-weight: 700; text-align: center;
+    margin-bottom: 40px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--link-color);
+}
+.sub-title {
+    font-size: 1.5em; font-weight: 400;
+    margin-top: 30px; margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+main { 
+    flex-grow: 1; 
+    /* 🎯 APLICAÇÃO DO NOVO DEGRADÊ NO CORPO PRINCIPAL (DARK: Verde -> Roxo) */
+    background: linear-gradient(
+        to bottom, 
+        var(--main-bg-start-dark), 
+        var(--main-bg-end-dark)
+    );
+    transition: background 0.4s ease;
+}
+
+[data-theme="light"] main {
+    /* 🎯 DEGRADÊ TEMA CLARO (LIGHT: Azul -> Branco) */
+    background: linear-gradient(
+        to bottom, 
+        var(--main-bg-start-light), 
+        var(--main-bg-end-light)
+    );
+}
+
+/* ❌ REMOVIDO: O bloco .gradient-transition foi desativado/removido */
+.gradient-transition {
+    display: none; 
+}
+
+/*===================================================================
+  4. BOTÕES (ESTILO NEON/CSS)
+===================================================================*/
+
+/* Estilos Base Comuns (Substitui as regras de background-image) */
+.btn-primary, .btn-secondary {
+    min-width: 150px; min-height: 40px; display: inline-flex;
+    font-size: 18px; align-items: center; justify-content: center;
+    text-transform: uppercase; text-align: center; letter-spacing: 1.3px;
+    font-weight: 700;
+    
+    background: var(--button-bg-gradient);
+    border: none; border-radius: 1000px; box-shadow: 0 0 15px rgba(231, 76, 60, 0.5); 
+    transition: all 0.3s ease-in-out 0s; cursor: pointer; outline: none;
+    position: relative; z-index: 10; padding: 10px 25px; 
+    color: var(--button-text-light) !important; 
+}
+
+/* Estilo Primário (Contato) */
+.btn-primary {
+    padding: 20px 45px; min-height: 60px; font-size: 20px; min-width: 200px; 
+}
+
+/* Estilo Secundário (Navegação/Projetos) */
+.btn-secondary {
+    padding: 18px 35px; min-height: 55px;
+}
+
+/* Pseudo-elemento de Borda Externa (Neon) */
+.btn-primary::before, .btn-secondary::before {
+    content: ''; border-radius: 1000px;
+    min-width: calc(100% + 12px); min-height: calc(100% + 12px);
+    border: 6px solid var(--button-neon-color);
+    box-shadow: 0 0 60px hsla(var(--primary-hue), 80%, 70%, .64);
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; transition: all .3s ease-in-out 0s; z-index: -1;
+}
+
+/* ANIMAÇÃO DE PULSO (RING): INATIVA POR PADRÃO */
+.btn-primary::after, .btn-secondary::after {
+    content: ''; width: 25px; height: 25px; border-radius: 100%;
+    border: 6px solid var(--button-neon-color); position: absolute; z-index: -2; 
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    animation: none; display: none; 
+}
+
+/* Efeito Hover e Focus */
+.btn-primary:hover, .btn-primary:focus, 
+.btn-secondary:hover, .btn-secondary:focus {
+    color: var(--button-text-light); 
+    transform: translateY(-4px); 
+}
+
+/* HOVER: ATIVA BORDA NEON E PULSO */
+.btn-primary:hover::before, .btn-primary:focus::before,
+.btn-secondary:hover::before, .btn-secondary:focus::before {
+    opacity: 1;
+}
+.btn-primary:hover::after, .btn-primary:focus::after,
+.btn-secondary:hover::after, .btn-secondary:focus::after {
+    animation: ring 1.5s infinite; 
+    display: block; 
+}
+
+@keyframes ring {
+  0% { width: 25px; height: 25px; opacity: 1; }
+  100% { width: 150px; height: 150px; opacity: 0; }
+}
+
+
+/* Theme Switcher */
+.theme-switcher-wrapper {
+    position: fixed; top: 20px; right: 30px; z-index: 100; text-align: center;
+}
+.theme-switcher-wrapper span {
+    display: block; font-size: 0.8em; color: var(--secondary-text-color);
+    margin-top: 5px; text-transform: uppercase;
+}
+.theme-switcher {
+    /* MANTÉM A IMAGEM BUTTON_1.PNG */
+    background-image: url('../img/buttons/button_1.png');
+    background-size: cover; width: 55px; height: 55px; 
+    font-size: 0; line-height: 0;
+    transition: transform 0.2s ease, filter 0.3s ease;
+    filter: brightness(0.8);
+}
+.theme-switcher:hover {
+    transform: scale(1.05); filter: brightness(1.1);
+}
+
+
+/* 🎯 CORREÇÃO DE COR: Navegação Branca no Header/Tema Claro */
+.main-nav ul a {
+    color: #ffffff !important;
+}
+.main-nav ul a:hover {
+    color: #ffffff !important; 
+}
+
+
+/*===================================================================
+  5. HEADER (HERO BLOCK) - TROCA DE PERSONAGEM
+===================================================================*/
+.hero-block {
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; background-size: cover;
+    background-position: center; background-image: var(--header-bg-web); 
+}
+.hero-block::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 5;
+}
+.content-wrapper {
+    position: relative; z-index: 10; display: flex;
+    align-items: center; justify-content: space-around;
+    width: 90%; max-width: 1200px; height: 100%; 
+}
+.hero-text {
+    max-width: 500px; text-align: right; position: relative; z-index: 20; 
+    margin-left: auto; padding-right: 5%; 
+}
+.hero-text .title {
+    font-size: 4em; text-shadow: 0 0 15px hsla(var(--primary-hue), 70%, 70%, 0.8);
+    line-height: 1.1; margin-bottom: 0;
+}
+
+/* 🎯 TROCA DE PERSONAGEM VIA CSS BACKGROUND */
+.hero-character {
+    width: 450px; 
+    height: 600px; /* Altura fixa para o container do fundo */
+    max-height: 90vh; 
+    
+    background-image: var(--hero-character-url);
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: bottom;
+
+    filter: drop-shadow(0 0 10px var(--shadow-color)); z-index: 15; 
+    position: absolute; left: 10%; bottom: 0; 
+}
+.main-nav {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 15px;
+    margin-top: 20px; justify-content: flex-end; 
+}
+.main-nav ul {
+    list-style: none; padding: 0; margin: 0; display: flex; gap: 15px;
+}
+
+
+/*===================================================================
+  6. SEÇÃO SOBRE (ABOUT BLOCK) - ESTRUTURA E TROCA DE PERFIL
+===================================================================*/
+.about-content {
+    display: flex; gap: 40px; align-items: flex-start;
+    max-width: 1000px; margin: 0 auto;
+}
+.profile-image {
+    width: 250px; height: 450px; object-fit: cover;
+    border-radius: 8px; border: 4px solid var(--accent-color); flex-shrink: 0;
+    
+    /* Puxa imagem da variável de tema (desktop/dark) */
+    content: var(--profile-img-dark);
+}
+[data-theme="light"] .profile-image {
+    /* Troca para imagem clara (desktop/light) */
+    content: var(--profile-img-light);
+}
+.bio-text { flex-grow: 1; }
+.github-stats-image {
+    width: 100%; max-width: 500px; height: auto; margin: 20px 0;
+    border-radius: 5px; filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+.experience-list { list-style-type: none; padding: 0; margin-top: 20px; }
+.experience-list li {
+    padding: 8px 0; border-left: 3px solid var(--link-color);
+    padding-left: 15px; margin-bottom: 10px;
+}
+/* Link Ver CV Completo */
+.bio-text > .btn-secondary {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+
+/*===================================================================
+  7. SEÇÃO PROJETOS (PROJECTS BLOCK)
+===================================================================*/
+.projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 30px; max-width: 1200px; margin: 0 auto;
+}
+.project-card {
+    background-color: var(--block-bg); padding: 0; border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-color); border-top: 5px solid var(--link-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; flex-direction: column; overflow: hidden; 
+}
+.project-card:hover {
+    transform: translateY(-5px); border-color: var(--accent-color);
+    box-shadow: 0 8px 20px hsla(var(--primary-hue), 70%, 50%, 0.3);
+}
+.project-banner {
+    width: 100%; height: 250px; background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex; justify-content: center; align-items: center;
+    font-weight: bold; color: var(--secondary-text-color);
+}
+.project-banner img { width: 100%; height: 100%; object-fit: cover; }
+.card-content {
+    padding: 25px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;
+}
+.card-title { font-size: 1.7em; color: var(--accent-color); margin-top: 0; }
+.card-desc { margin: 15px 0; flex-grow: 1; color: var(--secondary-text-color); }
+
+/* Botão Voltar ao Início */
+.back-to-top {
+    display: block; width: 200px; margin: 40px auto 0 auto; text-align: center;
+    color: var(--secondary-text-color); border: 1px solid var(--secondary-text-color);
+    background-color: transparent; padding: 10px 20px; border-radius: 50px;
+    font-weight: bold; font-size: 0.9em; transition: all 0.3s ease;
+}
+.back-to-top:hover {
+    color: var(--text-color); border-color: var(--accent-color);
+    background-color: hsla(var(--primary-hue), 50%, 50%, 0.1); transform: translateY(-2px);
+}
+
+/* 🎯 CORREÇÃO DE CONTRASTE NO TEMA CLARO */
+[data-theme="light"] .back-to-top { 
+    /* Força o texto para uma cor escura ou para a cor primária (Azul Marinho) */
+    color: var(--text-color); 
+    border-color: var(--border-color); 
+}
+[data-theme="light"] .back-to-top:hover {
+    /* No hover, o texto fica branco ou a cor de destaque (Vermelho) */
+    color: #ffffff; /* Texto branco no hover para melhor destaque */
+    border-color: var(--accent-color);
+    background-color: var(--accent-color); /* Fundo colorido no hover */
+}
+
+
+/*===================================================================
+  8. FOOTER (Skills & Contato)
+===================================================================*/
+.final-block {
+    /* Garante que o fundo do footer use a cor de término do degradê */
+    background-color: var(--background-color);
+    
+    background-image: var(--footer-bg); 
+    background-size: cover;
+    background-position: center; 
+    min-height: 500px; 
+    display: flex; flex-direction: column; justify-content: flex-end; 
+    padding-bottom: 80px;
+}
+.skills-stack {
+    max-width: 900px; margin: 0 auto 50px auto; padding: 30px;
+    background-color: var(--block-bg); border-radius: 10px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+.final-block h2.section-title, .skills-stack h2.section-title { 
+    display: block; margin-top: 0; 
+}
+.skills-stack h3.sub-title { display: none; }
+
+.contact-cta {
+    display: flex; align-items: center; justify-content: center;
+    gap: 40px; margin-top: 50px; padding-top: 30px;
+    border-top: 1px dashed var(--link-color);
+}
+.cta-icon { width: 300px; height: auto; filter: drop-shadow(0 0 5px var(--accent-color)); }
+.contact-links-group { display: flex; flex-wrap: wrap; gap: 20px; }
+
+/*===================================================================
+  10. ESTILO SKILLS/TALENTOS (HUD) - REVISÃO FINAL PARA AGRUPAMENTO
+===================================================================*/
+
+.skill-group { 
+    display: flex; 
+    flex-wrap: wrap; 
+    
+    /* 🎯 MUDANÇA CRUCIAL: Alinha os itens à esquerda (ou início), agrupando-os */
+    justify-content: flex-start; 
+    
+    /* REDUÇÃO DO ESPAÇAMENTO */
+    gap: 20px; 
+}
+
+.skill-item {
+    display: flex; flex-direction: column; align-items: center;
+    width: 150px; /* Mantém a largura de cada item para a coluna */
+    text-align: center; justify-content: flex-start; 
+}
+.skill-description {
+    font-size: 0.9em; color: var(--secondary-text-color);
+    margin-top: 5px; height: auto; padding: 0 5px; 
+}
+.skill-icon-ring {
+    width: 100px; height: 100px; border-radius: 50%;
+    background-color: hsla(var(--primary-hue), 30%, 20%, 0.8);
+    border: 3px solid var(--link-color);
+    box-shadow: 0 0 15px hsla(var(--primary-hue), 70%, 50%, 0.5);
+    margin-bottom: 15px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 0.8em; font-weight: 700; text-transform: uppercase;
+}
+.icon-logo {
+    max-width: 70%; max-height: 70%; object-fit: contain; 
+    filter: drop-shadow(0 0 5px var(--accent-color));
+}
+.skill-progress {
+    width: 100%; height: 18px;
+    background-color: hsla(var(--primary-hue), 10%, 15%, 0.8);
+    border-radius: 9px; border: 1px solid var(--secondary-text-color);
+    position: relative; overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--progress-start), var(--progress-end));
+    transition: width 1s ease-out; position: absolute; top: 0; left: 0;
+}
+.progress-label {
+    position: absolute; top: 0; left: 0;
+    width: 100%; text-align: center; line-height: 18px;
+    font-size: 0.8em; font-weight: bold; color: var(--text-color);
+    text-shadow: 0 0 2px #000; z-index: 2;
+}
+
+/* Estilo Tema Claro para HUD (Mantenha-os no final da Seção 10) */
+[data-theme="light"] .skill-icon-ring { background-color: var(--block-bg); border-color: var(--link-color); box-shadow: 0 0 5px var(--link-color); }
+[data-theme="light"] .skill-progress { background-color: var(--border-color); }
+[data-theme="light"] .progress-bar { background: linear-gradient(to right, var(--progress-start), var(--progress-end)); }
+[data-theme="light"] .progress-label { color: var(--text-color); text-shadow: none; }
+
+
+/*===================================================================
+  9. RESPONSIVIDADE (MEDIA QUERIES) - CORRIGIDO FINAL
+===================================================================*/
+
+/* Tablets e Mobile (Max-width: 900px) */
+@media (max-width: 900px) { 
+    .section-block { padding: 40px 5%; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .subtitle { font-size: 1em; }
+    
+    /* Header Mobile */
+    .hero-block {
+        background-image: var(--header-bg-mobile); 
+        height: 90vh; padding-top: 0; align-items: center; 
+    }
+    .content-wrapper {
+        flex-direction: column; align-items: center; justify-content: center; 
+        height: 100%; 
+    }
+    
+    /* 🎯 PERSONAGEM TEMA ESCURO MOBILE (Fixado à esquerda) */
+    .hero-character {
+        background-image: var(--hero-character-mobile-dark); /* Dark Mobile Image */
+        width: 250px; 
+        height: 180px;
+        position: absolute; 
+        top: 70%; 
+        left: 0%; /* Colado à esquerda */
+        transform: translate(0, -50%); /* Apenas tradução vertical */
+        right: auto; /* Garante que 'right' não anule 'left' */
+        order: 2; 
+    }
+
+    /* 🎯 PERSONAGEM TEMA CLARO MOBILE (Sobrescreve a imagem acima) */
+    [data-theme="light"] .hero-character {
+        background-image: var(--hero-character-mobile-light);
+    }
+    
+    .hero-text {
+        text-align: center; margin-top: 20px;
+        position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+        order: 1; max-width: 90%; 
+    }
+    .hero-text .title { font-size: 2.5em; }
+    
+    /* CORREÇÃO FINAL DA NAVEGAÇÃO MOBILE */
+    .main-nav { justify-content: center; width: 100%; margin-bottom: 5px; }
+    .main-nav ul {
+        flex-direction: row; flex-wrap: wrap;
+        gap: 8px; width: 80%; max-width: 300px; justify-content: center; 
+    }
+    .main-nav ul li { width: auto; text-align: center; }
+    .main-nav ul li a {
+        padding: 10px 15px; min-height: 40px; 
+    }
+
+        .bio-text > .btn-secondary {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .section-block { padding: 40px 3%; } 
+    .projects-grid { grid-template-columns: 1fr; }
+
+    .about-content {
+        flex-direction: column; /* Empilha verticalmente */
+        align-items: center; /* Centraliza horizontalmente */
+        gap: 20px;
+        max-width: 100%; /* Ocupa a largura total da seção */
+        margin: 0;
+    }
+
+    .profile-image {
+        width: 150px; height: 200px;
+        margin-bottom: 10px; 
+        border-radius: 50%; /* Torna a imagem circular */
+        border: 3px solid var(--accent-color);
+    }
+
+    .bio-text {
+        width: 100%; /* Ocupa a largura total para alinhar */
+        padding: 0 10px; 
+        text-align: center; /* Centraliza o texto */
+    }
+    .bio-text > .btn-secondary {
+        display: block; /* Garante que o botão ocupe sua própria linha */
+        margin: 20px auto 0 auto; /* Centraliza o botão */
+        width: 90%; /* Garante que o botão ocupe bem o espaço */
+    }
+    .github-stats-image {
+        max-width: 100%; /* Garante que o gráfico não saia da tela */
+    }
+    
+    /* Footer Mobile */
+    .final-block { min-height: 350px; }
+    .contact-cta { flex-direction: column; gap: 20px; }
+    .contact-links-group { flex-direction: column; width: 80%; }
+    .contact-links-group a { width: 100%; text-align: center; }
+    .cta-icon { width: 150px; }
+}
+
+/* Mobile Pequeno (Max-width: 600px) */
+@media (max-width: 600px) {
+    .hero-block { height: 70vh; }
+    .main-nav ul { width: 95%; gap: 5px; }
+}

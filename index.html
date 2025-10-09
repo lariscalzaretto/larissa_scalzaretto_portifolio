@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Larissa Scalzaretto | Portfólio UX/UI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@400;700&family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        // Função JS para alternar o atributo 'data-theme' no body
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+        }
+        
+        // Função JS para rolagem suave do "Voltar ao Início"
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== "#") { // Evita rolar se for apenas #
+                        e.preventDefault();
+                        document.querySelector(href).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body data-theme="light"> 
+
+    <div class="theme-switcher-wrapper">
+        <button class="theme-switcher" onclick="toggleTheme()" aria-label="Alternar entre tema claro e escuro"></button>
+        <span>Theme</span>
+    </div>
+
+    <header id="hero" class="hero-block" role="banner">
+        <div class="background-asset"></div> 
+        <div class="content-wrapper">
+            
+            <div class="hero-character"></div>
+            
+            <div class="hero-text">
+                <h1 class="title">Larissa Scalzaretto</h1>
+                <p class="subtitle">UX/UI Design | Desenvolvimento Front-end</p>
+                
+                <nav class="main-nav" aria-label="Navegação Principal do Portfólio">
+                    <ul>
+                        <li><a href="#about" class="btn-secondary">Sobre</a></li>
+                        <li><a href="#projects" class="btn-secondary">Projetos</a></li>
+                        <li><a href="#contact" class="btn-secondary">Skills</a></li>
+                        <li><a href="#contact" class="btn-secondary">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section-block">
+            <h2 class="section-title">Sobre</h2>
+            
+            <div class="about-content">
+                
+                <img 
+                    src="assets/img/characters/no_background/bust_1.png" 
+                    alt="Retrato da Aventureira, Larissa, em estilo ícone" 
+                    class="profile-image" 
+                    loading="lazy"
+                />
+
+                <div class="bio-text">
+                    <p>Meu nome é Larissa. Sou uma <strong>UX/UI Designer Júnior</strong> com base em <strong>Branding</strong> e habilidades em <strong>Desenvolvimento Front-end (HTML, CSS, JavaScript)</strong>. Meu foco é traduzir a identidade visual de marcas em interfaces digitais intuitivas e tecnicamente robustas. Cada projeto é uma missão para aprimorar a usabilidade e garantir que a estética funcione perfeitamente no código.</p>
+                    
+                    <h3 class="sub-title">Estatísticas e Experiência</h3>
+                    <img 
+                        src="https://github-readme-stats.vercel.app/api?username=lariscalzaretto&show_icons=true&theme=tokyonight&hide_border=true" 
+                        alt="Gráfico de Estatísticas do GitHub" 
+                        class="github-stats-image" 
+                        loading="lazy"
+                    />
+
+                    <ul class="experience-list">
+                        <li><strong>NUXX (2023–2025):</strong> Design digital, marketing e métricas em marca premium.</li>
+                        <li><strong>SERPUI (2017–2020):</strong> Compras, marketing digital e logística internacional.</li>
+                    </ul>
+                    
+                    <a href="https://drive.google.com/drive/folders/1MFODkrsepHvgOH6KWnbmguU03VdlOCFo?usp=drive_link" 
+                       class="btn-secondary" 
+                       target="_blank" 
+                       style="margin-top: 20px; text-transform: uppercase;">
+                        Ver CV Completo
+                    </a>
+                </div>
+            </div>
+            
+            <a href="#hero" class="btn-tertiary back-to-top">Voltar ao Início</a>
+        </section>
+
+        <section id="projects" class="section-block">
+            <h2 class="section-title">Projetos Concluidos</h2>
+            
+            <div class="projects-grid">
+                
+                <article class="project-card" data-mission="branding-ux">
+                    <div class="project-banner">
+                        <img src="assets/img/projects/hype-sync.jpg" alt="Banner do Projeto Hype Sync">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hype Sync: Identidade de Marca</h3>
+                        <p class="card-desc">Branding completo para agência digital, focado em sistema visual escalável e hierarquia de comunicação (UX), garantindo presença forte em plataformas digitais.</p>
+                        <a href="https://larissascalzaretto.myportfolio.com/hype-sync-identidade-de-marca" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver Projeto</a>
+                    </div>
+                </article>
+
+                <article class="project-card" data-mission="art-direction">
+                    <div class="project-banner">
+                        <img src="assets/img/projects/kaya.jpg" alt="Banner do Projeto Kaia Studio">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Kaia Studio: Direção de Marca</h3>
+                        <p class="card-desc">Direção de Marca guiada por storytelling e paleta vibrante. Estabeleceu a base estética e o manual de estilo para uma experiência de marca emocional e memorável (UI).</p>
+                        <a href="https://larissascalzaretto.myportfolio.com/kaia-studio-identidade-visual-direcao-de-marca" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver Projeto</a>
+                    </div>
+                </article>
+                
+                <article class="project-card" data-mission="visual-identity">
+                    <div class="project-banner">
+                        <img src="assets/img/projects/mokko.jpg" alt="Banner do Projeto Mokko Café">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Mokko Café: Identidade Visual</h3>
+                        <p class="card-desc">Criação de branding orgânico e acolhedor (Design Emocional) com paletas terrosas e tipografia suave, garantindo coesão funcional em todos os materiais de contato.</p>
+                        <a href="https://larissascalzaretto.myportfolio.com/mokko-cafe-identidade-visual" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver Projeto</a>
+                    </div>
+                </article>
+                
+                <article class="project-card" data-mission="frontend-api">
+                    <div class="project-banner">
+                        <img src="assets/img/projects/pokedex.png" alt="Banner do Projeto Pokédex">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Pokédex: Coletor de Dados JS</h3>
+                        <p class="card-desc">Aplicação web com consumo de API e JS Vanilla. Missão técnica focada em organização de código, manipulação de DOM e design <strong>totalmente responsivo</strong> (UX).</p>
+                        <a href="https://github.com/lariscalzaretto/js-developer-pokedex" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver Código</a>
+                        <a href="https://lariscalzaretto.github.io/js-developer-pokedex/" target="_blank" rel="noopener noreferrer" class="btn-secondary">Ver Projeto</a>
+                    </div>
+                </article>
+
+            </div>
+            
+            <a href="#hero" class="btn-tertiary back-to-top">Voltar ao Início</a>
+        </section>
+    </main>
+    
+    <div class="gradient-transition"></div>
+
+    <footer id="skills" class="section-block final-block" role="contentinfo">
+        
+        <div class="skills-stack">
+    <h2 class="section-title">Skills</h2>
+    
+    <div class="skill-group" data-category="dev-tools">
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/aws.png" alt="Logo AWS" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 35%;"></div>
+                <span class="progress-label">35%</span>
+            </div>
+            <p class="skill-description">AWS Cloud</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/git.png" alt="Logo Git/GitHub" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 70%;"></div>
+                <span class="progress-label">70%</span>
+            </div>
+            <p class="skill-description">Git/GitHub</p>
+        </div>
+
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/html5.png" alt="Logo HTML5" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 80%;"></div>
+                <span class="progress-label">80%</span>
+            </div>
+            <p class="skill-description">HTML</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/css3.png" alt="Logo CSS3" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 50%;"></div>
+                <span class="progress-label">50%</span>
+            </div>
+            <p class="skill-description">CSS & Layout</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/javascript.png" alt="Logo JavaScript" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 30%;"></div>
+                <span class="progress-label">30%</span>
+            </div>
+            <p class="skill-description">JavaScript</p>
+        </div>
+    </div>
+
+    <div class="skill-group" data-category="design-ux">
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/figma.png" alt="Logo Figma/UX UI" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 90%;"></div>
+                <span class="progress-label">90%</span>
+            </div>
+            <p class="skill-description">UX/UI Design</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/design_thinking.png" alt="Logo Design Thinking" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 90%;"></div>
+                <span class="progress-label">90%</span>
+            </div>
+            <p class="skill-description">Design Thinking</p>
+        </div>
+
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/adobe_cc.png" alt="Logo Adobe Creative Cloud" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 85%;"></div>
+                <span class="progress-label">85%</span>
+            </div>
+            <p class="skill-description">Adobe Creative Cloud</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/webflow.png" alt="Logo Webflow" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 60%;"></div>
+                <span class="progress-label">60%</span>
+            </div>
+            <p class="skill-description">Low-Code Dev</p>
+        </div>
+    </div>
+
+    <div class="skill-group" data-category="marketing-ai">
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/marketing.png" alt="Logo Marketing" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 90%;"></div>
+                <span class="progress-label">90%</span>
+            </div>
+            <p class="skill-description">Marketing Digital</p>
+        </div>
+        
+        <div class="skill-item">
+            <div class="skill-icon-ring">
+                <img src="assets/img/logos/ai_logo.png" alt="Logo IA" class="icon-logo">
+            </div>
+            <div class="skill-progress">
+                <div class="progress-bar" style="width: 70%;"></div>
+                <span class="progress-label">70%</span>
+            </div>
+            <p class="skill-description">Inteligência Artificial</p>
+        </div>
+    </div>
+</div>
+        
+        <div id="contact" class="contact-cta flex-row">
+            <img 
+                src="assets/img/characters/no_background/icon_1.png" 
+                alt="Ícone de Contato: Ilustração de uma mão dando olá" 
+                class="cta-icon"
+                loading="lazy"
+            />
+            
+            <div class="contact-links-group flex-row">
+                <a href="mailto:scalzarettolarissa@gmail.com" class="btn-primary" aria-label="Enviar e-mail para Larissa Scalzaretto">✉️ E-mail</a>
+                <a href="https://github.com/lariscalzaretto" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Perfil do GitHub">🐙 GitHub</a>
+                <a href="https://www.linkedin.com/in/larissa-guilhermina" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Perfil do LinkedIn">💼 LinkedIn</a>
+            </div>
+        </div>
+        
+        <a href="#hero" class="btn-tertiary back-to-top">Voltar ao Início</a>
+    </footer>
+
+</body>
+</html>

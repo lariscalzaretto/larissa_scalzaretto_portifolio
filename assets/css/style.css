@@ -1,50 +1,33 @@
 /*===================================================================
   1. VARIÁVEIS GLOBAIS DE TEMA
 ===================================================================*/
-
 :root {
-    /* Cores e Gradientes */
     --primary-hue: 250; 
     --accent-color: hsl(300, 70%, 50%);
     --link-color: hsl(var(--primary-hue), 70%, 60%);
-    
-    /* 🎯 VARIÁVEIS DEGRADÊ DE FUNDO PRINCIPAL (DARK: Verde Escuro -> Roxo) */
-    --main-bg-start-dark: hsl(120, 15%, 5%);    
-    --main-bg-end-dark: #17161c; 
-    
-    /* Cor de fundo base (final do degradê) */
-    --background-color: var(--main-bg-end-dark); 
-
+    --gradient-end-dark: hsl(var(--primary-hue), 15%, 15%);
+    --background-color: hsl(var(--primary-hue), 15%, 10%); 
     --text-color: #f0f0f0;
     --secondary-text-color: #a0a0a0;
     --block-bg: hsla(var(--primary-hue), 15%, 15%, 0.9);
     --shadow-color: rgba(0, 0, 0, 0.4);
-    
-    /* VARIÁVEIS DE IMAGEM DARK */
     --header-bg-web: url('../img/background/banner_4.jpg'); 
     --header-bg-mobile: url('../img/background/forest.png'); 
     --footer-bg: url('../img/background/Image_fx.jpg'); 
-    
-    /* PERSONAGENS (Desktop e Mobile Dark) */
-    --hero-character-url: url('../img/characters/no_background/full_2.jpg'); 
-    --hero-character-mobile-dark: url('../img/characters/no_background/bear_1.png'); 
-    --hero-character-mobile-light: url('../img/characters/no_background/bear_1.png'); 
-
-    /* VARIÁVEIS DO BOTÃO/PROGRESSO */
     --button-neon-color: var(--link-color); 
     --button-text-light: #313133; 
     --button-bg-gradient: linear-gradient(90deg, hsla(280, 50%, 60%, 1) 0%, hsla(300, 70%, 50%, 1) 100%); 
     --progress-start: hsl(260, 90%, 60%); 
     --progress-end: hsl(320, 90%, 60%); 
+    /* Personagem Desktop/Dark */
+    --hero-character-url: url('../img/characters/no_background/full_2.jpg'); 
+    --hero-character-mobile-dark: url('../img/characters/no_background/bear_1.png'); 
+    /* Profile Image */
+    --profile-img-dark: url('../img/characters/no_background/bust_1.png'); 
 }
 
 [data-theme="light"] {
-    /* 🎯 VARIÁVEIS DEGRADÊ DE FUNDO PRINCIPAL (LIGHT: Azul -> Branco) */
-    --main-bg-start-light: hsl(200, 70%, 90%); 
-    --main-bg-end-light: #5b8ab6; 
-    
-    /* Cor de fundo base (final do degradê) */
-    --background-color: var(--main-bg-end-light); 
+    --background-color: #ffffff; 
     --text-color: #2c3e50; 
     --secondary-text-color: #7f8c8d;
     --block-bg: rgba(236, 240, 241, 0.9); 
@@ -52,22 +35,20 @@
     --border-color: #bdc3c7;
     --link-color: #3498db; 
     --accent-color: #e74c3c; 
-    
-    /* VARIÁVEIS DE IMAGEM LIGHT */
+    --gradient-start-light: #ffffff;
+    --gradient-end-light: #ecf0f1;
     --header-bg-web: url('../img/background/ice.png'); 
     --header-bg-mobile: url('../img/background/banner_cel.jpg'); 
     --footer-bg: url('../img/background/banner_5.jpg'); 
-    
-    /* PERSONAGENS (Desktop e Mobile Light) */
-    --hero-character-url: url('../img/characters/no_background/full_1.png'); 
-    --hero-character-mobile-light: url('../img/characters/no_background/bear_2.png'); 
-    --hero-character-mobile-dark: url('../img/characters/no_background/bear_1.png'); 
-
-    /* VARIÁVEIS DO BOTÃO/PROGRESSO LIGHT */
     --button-neon-color: var(--link-color); 
     --button-bg-gradient: linear-gradient(90deg, hsla(200, 70%, 60%, 1) 0%, hsla(200, 70%, 50%, 1) 100%);
     --progress-start: hsl(260, 80%, 50%); 
     --progress-end: hsl(320, 80%, 50%);
+    /* Personagem Desktop/Light */
+    --hero-character-url: url('../img/characters/no_background/full_1.png'); 
+    --hero-character-mobile-light: url('../img/characters/no_background/bear_2.png'); 
+    /* Profile Image */
+    --profile-img-light: url('../img/characters/no_background/bust_1.png'); /* Assumindo que a imagem de perfil é a mesma bust_1.png */
 }
 
 /*===================================================================
@@ -79,8 +60,7 @@ html { scroll-behavior: smooth; }
 body {
     font-family: 'Exo 2', sans-serif;
     margin: 0; padding: 0;
-    /* O body AGORA USA a cor final do degradê do main */
-    background-color: var(--background-color); 
+    background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease;
     min-height: 100vh; 
@@ -95,8 +75,6 @@ h1, h2, h3 {
 
 /* Força texto do header a ser branco */
 .hero-text .title, .hero-text .subtitle { color: #ffffff !important; }
-
-.subtitle { font-size: 1.8em; color: var(--secondary-text-color); }
 
 a {
     color: var(--link-color);
@@ -128,34 +106,24 @@ a:hover { color: var(--accent-color); }
 
 main { 
     flex-grow: 1; 
-    /* 🎯 APLICAÇÃO DO NOVO DEGRADÊ NO CORPO PRINCIPAL (DARK: Verde -> Roxo) */
-    background: linear-gradient(
-        to bottom, 
-        var(--main-bg-start-dark), 
-        var(--main-bg-end-dark)
-    );
     transition: background 0.4s ease;
 }
 
-[data-theme="light"] main {
-    /* 🎯 DEGRADÊ TEMA CLARO (LIGHT: Azul -> Branco) */
-    background: linear-gradient(
-        to bottom, 
-        var(--main-bg-start-light), 
-        var(--main-bg-end-light)
-    );
+.gradient-transition {
+    height: 100px; width: 100%;
+    background: linear-gradient(to bottom, var(--background-color), var(--gradient-end-dark));
+    transition: background 0.4s ease;
 }
 
-/* ❌ REMOVIDO: O bloco .gradient-transition foi desativado/removido */
-.gradient-transition {
-    display: none; 
+[data-theme="light"] .gradient-transition {
+    background: linear-gradient(to bottom, var(--gradient-start-light), var(--gradient-end-light));
 }
 
 /*===================================================================
   4. BOTÕES (ESTILO NEON/CSS)
 ===================================================================*/
 
-/* Estilos Base Comuns (Substitui as regras de background-image) */
+/* Estilos Base Comuns */
 .btn-primary, .btn-secondary {
     min-width: 150px; min-height: 40px; display: inline-flex;
     font-size: 18px; align-items: center; justify-content: center;
@@ -231,7 +199,6 @@ main {
     margin-top: 5px; text-transform: uppercase;
 }
 .theme-switcher {
-    /* MANTÉM A IMAGEM BUTTON_1.PNG */
     background-image: url('../img/buttons/button_1.png');
     background-size: cover; width: 55px; height: 55px; 
     font-size: 0; line-height: 0;
@@ -257,7 +224,7 @@ main {
 ===================================================================*/
 .hero-block {
     height: 100vh; display: flex; align-items: center; justify-content: center;
-    position: absolute; overflow: hidden; background-size: cover;
+    position: relative; overflow: hidden; background-size: cover;
     background-position: center; background-image: var(--header-bg-web); 
 }
 .hero-block::before {
@@ -278,10 +245,10 @@ main {
     line-height: 1.1; margin-bottom: 0;
 }
 
-/* 🎯 TROCA DE PERSONAGEM VIA CSS BACKGROUND */
+/* 🎯 TROCA DE PERSONAGEM VIA CSS BACKGROUND (Desktop) */
 .hero-character {
     width: 450px; 
-    height: 600px; /* Altura fixa para o container do fundo */
+    height: 600px; 
     max-height: 90vh; 
     
     background-image: var(--hero-character-url);
@@ -302,22 +269,17 @@ main {
 
 
 /*===================================================================
-  6. SEÇÃO SOBRE (ABOUT BLOCK) - ESTRUTURA E TROCA DE PERFIL
+  6. SEÇÃO SOBRE (ABOUT BLOCK)
 ===================================================================*/
 .about-content {
     display: flex; gap: 40px; align-items: flex-start;
     max-width: 1000px; margin: 0 auto;
 }
 .profile-image {
+    /* Mantenha o profile-image como IMG (src no HTML) */
     width: 250px; height: 450px; object-fit: cover;
     border-radius: 8px; border: 4px solid var(--accent-color); flex-shrink: 0;
-    
-    /* Puxa imagem da variável de tema (desktop/dark) */
-    content: var(--profile-img-dark);
-}
-[data-theme="light"] .profile-image {
-    /* Troca para imagem clara (desktop/light) */
-    content: var(--profile-img-light);
+    display: block; /* Garante que a tag <img> seja exibida */
 }
 .bio-text { flex-grow: 1; }
 .github-stats-image {
@@ -377,18 +339,10 @@ main {
     color: var(--text-color); border-color: var(--accent-color);
     background-color: hsla(var(--primary-hue), 50%, 50%, 0.1); transform: translateY(-2px);
 }
-
-/* 🎯 CORREÇÃO DE CONTRASTE NO TEMA CLARO */
-[data-theme="light"] .back-to-top { 
-    /* Força o texto para uma cor escura ou para a cor primária (Azul Marinho) */
-    color: var(--text-color); 
-    border-color: var(--border-color); 
-}
+[data-theme="light"] .back-to-top { color: var(--secondary-text-color); border-color: var(--border-color); }
 [data-theme="light"] .back-to-top:hover {
-    /* No hover, o texto fica branco ou a cor de destaque (Vermelho) */
-    color: #ffffff; /* Texto branco no hover para melhor destaque */
-    border-color: var(--accent-color);
-    background-color: var(--accent-color); /* Fundo colorido no hover */
+    color: var(--text-color); border-color: var(--accent-color);
+    background-color: rgba(255, 0, 0, 0.05);
 }
 
 
@@ -396,9 +350,7 @@ main {
   8. FOOTER (Skills & Contato)
 ===================================================================*/
 .final-block {
-    /* Garante que o fundo do footer use a cor de término do degradê */
     background-color: var(--background-color);
-    
     background-image: var(--footer-bg); 
     background-size: cover;
     background-position: center; 
@@ -424,25 +376,15 @@ main {
 .cta-icon { width: 300px; height: auto; filter: drop-shadow(0 0 5px var(--accent-color)); }
 .contact-links-group { display: flex; flex-wrap: wrap; gap: 20px; }
 
+
 /*===================================================================
-  10. ESTILO SKILLS/TALENTOS (HUD) - REVISÃO FINAL PARA AGRUPAMENTO
+  10. ESTILO SKILLS/TALENTOS (HUD)
 ===================================================================*/
 
-.skill-group { 
-    display: flex; 
-    flex-wrap: wrap; 
-    
-    /* 🎯 MUDANÇA CRUCIAL: Alinha os itens à esquerda (ou início), agrupando-os */
-    justify-content: flex-start; 
-    
-    /* REDUÇÃO DO ESPAÇAMENTO */
-    gap: 20px; 
-}
-
+.skill-group { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 20px; }
 .skill-item {
     display: flex; flex-direction: column; align-items: center;
-    width: 150px; /* Mantém a largura de cada item para a coluna */
-    text-align: center; justify-content: flex-start; 
+    width: 150px; text-align: center; justify-content: flex-start; 
 }
 .skill-description {
     font-size: 0.9em; color: var(--secondary-text-color);
@@ -478,12 +420,10 @@ main {
     font-size: 0.8em; font-weight: bold; color: var(--text-color);
     text-shadow: 0 0 2px #000; z-index: 2;
 }
-
-/* Estilo Tema Claro para HUD (Mantenha-os no final da Seção 10) */
 [data-theme="light"] .skill-icon-ring { background-color: var(--block-bg); border-color: var(--link-color); box-shadow: 0 0 5px var(--link-color); }
 [data-theme="light"] .skill-progress { background-color: var(--border-color); }
 [data-theme="light"] .progress-bar { background: linear-gradient(to right, var(--progress-start), var(--progress-end)); }
-[data-theme="light"] .progress-label { color: var(--text-color); text-shadow: none; }
+[data-theme="light"] .progress-label { color: var(--text-color); text-shadow: none; }   
 
 
 /*===================================================================
@@ -491,11 +431,11 @@ main {
 ===================================================================*/
 
 /* Tablets e Mobile (Max-width: 900px) */
-@media (max-width: 900px) { 
-    .section-block { padding: 40px 5%; }
+@media (max-width: 900px) {
+    .section-block { padding: 40px 3%; } 
     .projects-grid { grid-template-columns: 1fr; }
     .subtitle { font-size: 1em; }
-    
+
     /* Header Mobile */
     .hero-block {
         background-image: var(--header-bg-mobile); 
@@ -506,32 +446,22 @@ main {
         height: 100%; 
     }
     
-/* 🎯 PERSONAGEM TEMA ESCURO MOBILE (Fixado à direita) */
+    /* 🎯 HERO CHARACTER (PERSONAGEM DO CABEÇALHO) - FIXADO INFERIOR DIREITO */
     .hero-character {
-    background-image: var(--hero-character-mobile-dark); /* Dark Mobile Image */
-    width: 250px; 
-    height: 180px;
-    position: absolute; 
-    
-    /* 1. ANULAR POSIÇÃO TOP */
-    top: auto; 
-    
-    /* 2. ANULAR POSIÇÃO LEFT (CRUCIAL PARA O RIGHT: 0% FUNCIONAR) */
-    left: auto; 
-    
-    /* 3. NOVO POSICIONAMENTO PARA INFERIOR DIREITO */
-    bottom: 0%; /* COLADO NO FUNDO */
-    right: 0%;  /* COLADO À DIREITA */
-    
-    /* 4. ANULAR TRANSFORMAÇÃO DE AJUSTE VERTICAL */
-    transform: none; 
-    
-    order: 2; 
-}
-
-    /* 🎯 PERSONAGEM TEMA CLARO MOBILE (Sobrescreve a imagem acima) */
+        width: 250px; 
+        height: 250px; /* Altura para o personagem aparecer */
+        position: absolute; 
+        top: auto; 
+        left: auto; 
+        bottom: 0%; /* COLADO NO FUNDO */
+        right: 0%; /* COLADO À DIREITA */
+        transform: none; 
+        order: 2; 
+        
+        background-image: var(--hero-character-mobile-dark); /* Troca de imagem no mobile dark */
+    }
     [data-theme="light"] .hero-character {
-        background-image: var(--hero-character-mobile-light);
+        background-image: var(--hero-character-mobile-light); /* Troca de imagem no mobile light */
     }
     
     .hero-text {
@@ -552,41 +482,32 @@ main {
         padding: 10px 15px; min-height: 40px; 
     }
 
-        .bio-text > .btn-secondary {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .section-block { padding: 40px 3%; } 
-    .projects-grid { grid-template-columns: 1fr; }
-
+    /* 🎯 CORREÇÃO DA SEÇÃO SOBRE (Ocupa a largura total e centraliza) */
     .about-content {
-        flex-direction: column; /* Empilha verticalmente */
-        align-items: center; /* Centraliza horizontalmente */
+        flex-direction: column; 
+        align-items: center; 
         gap: 20px;
-        max-width: 100%; /* Ocupa a largura total da seção */
+        max-width: 100%; 
         margin: 0;
     }
-
+    
     .profile-image {
-        width: 150px; height: 200px;
+        width: 150px; height: 150px; 
         margin-bottom: 10px; 
-        border-radius: 50%; /* Torna a imagem circular */
+        border-radius: 50%; 
         border: 3px solid var(--accent-color);
+        object-fit: cover;
     }
-
+    
     .bio-text {
-        width: 100%; /* Ocupa a largura total para alinhar */
+        width: 100%; 
         padding: 0 10px; 
-        text-align: center; /* Centraliza o texto */
+        text-align: center;
     }
     .bio-text > .btn-secondary {
-        display: block; /* Garante que o botão ocupe sua própria linha */
-        margin: 20px auto 0 auto; /* Centraliza o botão */
-        width: 90%; /* Garante que o botão ocupe bem o espaço */
-    }
-    .github-stats-image {
-        max-width: 100%; /* Garante que o gráfico não saia da tela */
+        display: block; 
+        margin: 20px auto 0 auto; 
+        width: 90%; 
     }
     
     /* Footer Mobile */

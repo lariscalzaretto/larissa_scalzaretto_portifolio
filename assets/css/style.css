@@ -257,7 +257,7 @@ main {
 ===================================================================*/
 .hero-block {
     height: 100vh; display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden; background-size: cover;
+    position: absolute; overflow: hidden; background-size: cover;
     background-position: center; background-image: var(--header-bg-web); 
 }
 .hero-block::before {
@@ -499,25 +499,35 @@ main {
     /* Header Mobile */
     .hero-block {
         background-image: var(--header-bg-mobile); 
-        height: 90vh; padding-top: 0; align-items: center; 
+        height: 100vh; padding-top: 0; padding-bottom: 10px; align-items: center; 
     }
     .content-wrapper {
         flex-direction: column; align-items: center; justify-content: center; 
         height: 100%; 
     }
     
-    /* 🎯 PERSONAGEM TEMA ESCURO MOBILE (Fixado à esquerda) */
+/* 🎯 PERSONAGEM TEMA ESCURO MOBILE (Fixado à direita) */
     .hero-character {
-        background-image: var(--hero-character-mobile-dark); /* Dark Mobile Image */
-        width: 250px; 
-        height: 180px;
-        position: absolute; 
-        top: 70%; 
-        left: 0%; /* Colado à esquerda */
-        transform: translate(0, -50%); /* Apenas tradução vertical */
-        right: auto; /* Garante que 'right' não anule 'left' */
-        order: 2; 
-    }
+    background-image: var(--hero-character-mobile-dark); /* Dark Mobile Image */
+    width: 250px; 
+    height: 180px;
+    position: absolute; 
+    
+    /* 1. ANULAR POSIÇÃO TOP */
+    top: auto; 
+    
+    /* 2. ANULAR POSIÇÃO LEFT (CRUCIAL PARA O RIGHT: 0% FUNCIONAR) */
+    left: auto; 
+    
+    /* 3. NOVO POSICIONAMENTO PARA INFERIOR DIREITO */
+    bottom: 0%; /* COLADO NO FUNDO */
+    right: 0%;  /* COLADO À DIREITA */
+    
+    /* 4. ANULAR TRANSFORMAÇÃO DE AJUSTE VERTICAL */
+    transform: none; 
+    
+    order: 2; 
+}
 
     /* 🎯 PERSONAGEM TEMA CLARO MOBILE (Sobrescreve a imagem acima) */
     [data-theme="light"] .hero-character {

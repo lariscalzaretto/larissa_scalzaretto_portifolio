@@ -29,6 +29,6 @@ Bem-vindo ao meu repositório de portfólio. Este projeto foi desenvolvido para 
 
 Você pode me encontrar em:
 
-* **LinkedIn:** [Seu link do LinkedIn]
-* **E-mail:** [Seu e-mail]
-* **Portfólio (Behance/Outro):** [Seu link de Portfólio]
+- ✉️ **E-mail:** [scalzarettolarissa@gmail.com](mailto:scalzarettolarissa@gmail.com)  
+- 💼 **LinkedIn:** [Larissa Guilhermina](https://www.linkedin.com/in/larissa-guilhermina)   
+- 🐙 **GitHub:** [@lariscalzaretto](https://github.com/lariscalzaretto)  

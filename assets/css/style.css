@@ -426,6 +426,7 @@ main {
 [data-theme="light"] .progress-label { color: var(--text-color); text-shadow: none; }   
 
 
+
 /*===================================================================
   9. RESPONSIVIDADE (MEDIA QUERIES) - CORRIGIDO FINAL
 ===================================================================*/
@@ -522,4 +523,24 @@ main {
 @media (max-width: 600px) {
     .hero-block { height: 70vh; }
     .main-nav ul { width: 95%; gap: 5px; }
+}
+
+/* ===================================================================
+   CONTROLE DO BADGE LINKEDIN (LIGHT/DARK)
+=================================================================== */
+
+/* Comportamento Padrão (Tema Escuro definido no :root) */
+.linkedin-badge-wrapper.badge-light {
+    display: none; /* Esconde o badge claro */
+}
+.linkedin-badge-wrapper.badge-dark {
+    display: block; /* Mostra o badge escuro */
+}
+
+/* Comportamento quando o tema Light está ativo */
+[data-theme="light"] .linkedin-badge-wrapper.badge-light {
+    display: block; /* Mostra o badge claro */
+}
+[data-theme="light"] .linkedin-badge-wrapper.badge-dark {
+    display: none; /* Esconde o badge escuro */
 }
